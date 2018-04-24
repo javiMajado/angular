@@ -1,1 +1,239 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+#DataTables_Table_0_wrapper {
+    margin-bottom: 20px;
+}
+
+.barra {
+    background-color: #5a646e;
+    width: 80px;
+    height: 800px;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.barra span {
+    font-size: 34px;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform .4s;
+}
+
+.barra span:first-child {
+    margin-top: 160px;
+}
+
+.barra span:hover {
+    color: #c93631;
+    transform: scale(1.5);
+}
+
+.col-md-12 {
+    width: calc(100% - 80px);
+    margin-left: 80px;
+}
+
+.menu-inicio{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.box {
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.box span {
+    color: #343a40;
+    font-size: 50px;
+}
+
+.box p {
+    color: white;
+    font-size: 22px;
+}
+
+.rojo{background-color: #b81510;}
+.rojo:hover {background-color: #d9534f;}
+.rojo span {color: #c93631;}
+
+.titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.titulo span {
+    font-size: 20px; 
+    font-weight: bold;
+}
+
+.fijo {
+    width: 120px;
+}
+
+.fijo2 {
+    width: 140px;
+}
+
+.paddingGlobal {
+    padding: 20px;
+}
+
+.marginGlobal {
+    margin-top: 30px;
+}
+
+.icEnlace {
+    color: #343a40;
+    font-size: 22px;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.example-full-width {
+    width: 100%;
+  }
+
+.autenticacion {
+    margin-top: 80px;
+}
+
+.autenticacion h1 {
+    font-size: 22px;
+}
+
+.valido {
+    color: green;
+}
+
+.novalido{
+    color: red;
+}
+
+.white {
+    color: white;
+    font-size: 22px;
+    margin: 10px;
+}
+
+.icUser {
+    margin-left: 30px;
+    font-size: 30px;
+}
+
+.cabecera { 
+    width: 100%;
+    display: flex;
+}
+
+.cabecera .campo {
+    height: 40px;
+    margin: 6px;
+}
+
+.cabecera .campo:nth-child(1) {  width: 30%; }
+.cabecera .campo:nth-child(2) {  width: 30%; }
+.cabecera .campo:nth-child(3) {  width: 30%; }
+.cabecera .campo:nth-child(4) {  
+    width: 10%; 
+    border: none;
+}
+
+.cabecera .campo p { font-weight: bold }
+
+.fila {
+    width: 100%;
+    display: flex;
+}
+
+.fila .campo {
+    height: 40px;
+    margin: 6px;
+    border-bottom: 1px solid lightgray;
+}
+
+.fila .campo p{
+    padding-top: 8px;
+}
+
+.fila .campo:nth-child(1) {  width: 30%; }
+.fila .campo:nth-child(2) {  width: 30%; }
+.fila .campo:nth-child(3) {  width: 30%; }
+.fila .campo:nth-child(4) {  
+    width: 10%;
+    border:none;
+}
+
+.fila .nuevo{
+    height: 40px;
+    margin: 6px;
+    border-bottom: 1px solid lightgray;
+}
+
+.fila .nuevo:nth-child(1) {  width: 25%; }
+.fila .nuevo:nth-child(2) {  width: 30%; }
+.fila .nuevo:nth-child(3) {  width: 20%; }
+.fila .nuevo:nth-child(4) {  width: 20%; }
+.fila .nuevo:nth-child(5) {  
+    width: 5%;
+    border: none;
+}
+
+.fila input {
+    width: 100%;
+    margin: 0;
+    height: 40px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid lightgray;
+    color: cornflowerblue;
+}
+
+.fila input:focus {
+    outline: none;
+    border-bottom: 2px solid lightskyblue;
+}
+
+.fila input::-webkit-input-placeholder{
+    color: cornflowerblue;
+}
+
+form.fila {
+    margin-bottom: 40px;
+}
+
+.fila select {
+    width: 100%;
+    height: 40px;
+    color: cornflowerblue;
+}
+
+.fila select:focus {
+    outline: none;
+    border-bottom: 2px solid lightskyblue;
+}
+
+.fila.editable {
+    margin-bottom: 0;
+}

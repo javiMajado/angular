@@ -1,0 +1,99 @@
+<div class="barra">
+  <span title="Clientes" routerLink="/listado-clientes">
+    <i class="fas fa-box"></i>
+  </span>
+  <span title="Presupuestos"  routerLink="/listado-presupuestos">
+      <i class="fas fa-dollar-sign"></i>
+  </span>
+</div>
+<div class="col-md-12">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+      <li class="breadcrumb-item"><a routerLink="/ventas">Ventas</a></li>
+      <li class="breadcrumb-item"><a routerLink="/listado-presupuestos">Presupuestos</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Crear Presupuesto</li>
+    </ol>
+  </nav>
+</div>
+<div class="col-md-12 titulo">
+  <span>Crear Presupuesto</span>
+  <button class="btn btn-outline-success btn-lg" routerLink="/listado-presupuestos">
+    Listado
+  </button>
+</div>
+<div class="col-md-8">
+    <form [formGroup]="formPre" (ngSubmit)="crearPresupuesto()">
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="Cliente" formControlName="cliente" [(ngModel)]="presupuesto.cliente" #cliente>
+            <mat-option *ngFor="let cliente of clientes" [value]="cliente">
+              {{ cliente.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Cif" class="form-control" type="text" name="cif" 
+          formControlName="cif" maxlength="9" readonly [(ngModel)]="formPre.value.cif">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Fecha" class="form-control" type="date" name="fecha" 
+          formControlName="fecha">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Concepto" class="form-control" type="text" name="concepto" 
+          formControlName="concepto">
+        </mat-form-field>
+        
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" value="si" formControlName="irpf">
+            <label class="form-check-label" for="inlineRadio1">IRPF</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" value="no" formControlName="irpf">
+            <label class="form-check-label" for="inlineRadio2">Sin IRPF</label>
+          </div>
+        </div>      
+
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Base Imponible" class="form-control" type="text" name="base" 
+          formControlName="base">
+        </mat-form-field>
+
+        <div class="form-group">
+          <label for="tipo">% de IVA</label>
+          <select class="form-control" name="tipo" 
+                  formControlName="tipo">
+            <option value=0>0%</option>
+            <option value=0.04>4%</option>
+            <option value=0.10>10%</option>
+            <option value=0.21>21%</option>
+          </select>
+        </div>
+
+        <div class="form-group" *ngIf="irpf === 'si'">
+          <label for="retencion">Retencion IRPF</label>
+          <input class="form-control" type="text" name="retencion"
+                 formControlName="retencion" readonly [(ngModel)]="formPre.value.retencion">
+        </div>
+
+        <div class="form-group">
+          <label for="importe">Importe IVA</label>
+          <input class="form-control" type="text" name="importe"
+                 formControlName="importe" readonly [(ngModel)]="formPre.value.importe">
+        </div>
+
+        <div class="form-group">
+          <label for="total">Total Presupuesto IVA Incluido</label>
+          <input class="form-control" type="text" name="total"
+                formControlName="total" readonly [(ngModel)]="formPre.value.total">
+        </div>
+
+        <button type="submit" class="btn btn-success">Añadir Presupuesto</button>
+        <button class="btn btn-danger fijo2" routerLink="/listado-presupuestos">Cancelar</button>
+  </form>
+</div>

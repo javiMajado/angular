@@ -1,0 +1,74 @@
+<div class="barra">
+  <span title="Clientes" routerLink="/listado-clientes">
+    <i class="fas fa-box"></i>
+  </span>
+  <span title="Presupuestos" routerLink="/listado-presupuestos">
+      <i class="fas fa-dollar-sign"></i>
+  </span>
+</div>
+<div class="col-md-12">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+      <li class="breadcrumb-item"><a routerLink="/ventas">Ventas</a></li>
+      <li class="breadcrumb-item"><a routerLink="/listado-clientes">Clientes</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Crear Cliente</li>
+    </ol>
+  </nav>
+</div>
+<div class="col-md-12 titulo">
+  <span>Clientes</span>
+  <button class="btn btn-outline-success btn-lg" routerLink="/listado-clientes">
+    Listado
+  </button>
+</div>
+<!-- <div class="col-md-12">
+  <p class="alert alert-warning" [@alerta]="estadoAlerta">{{mensaje}}</p>
+</div> -->
+<div class="col-md-8 offset-2 paddingGlobal">
+  <form [formGroup]="formCliente" (ngSubmit)="crearCliente()">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control" formControlName="nombre">
+      <label for="cif">CIF</label>
+        <input type="text" class="form-control" formControlName="cif" #cif>
+    </div>
+
+    <div class="form-group">       
+        <label for="domicilio">Domicilio</label>
+        <input type="text" class="form-control" formControlName="domicilio">
+    </div>
+    
+    <div class="form-group">
+        <label for="cp">CP</label>
+        <input type="number" class="form-control" formControlName="cp">
+        <label for="localidad">Localidad</label>
+        <input type="text" class="form-control" formControlName="localidad">
+    </div>
+    
+    <div class="form-group">
+        <label for="provincia">Provincia</label>
+        <select class="form-control" formControlName="provincia">
+          <option *ngFor="let provincia of provincias" [ngValue]="provincia">
+            {{ provincia }}
+          </option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="telefono">Telefono</label>
+        <input type="text" class="form-control" formControlName="telefono">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+    </div>
+      <div class="form-group">            
+          <label for="contacto">Contacto</label>
+          <input type="text" class="form-control" formControlName="contacto">
+      </div>
+      <button type="submit" class="btn btn-success fijo2">
+        <span *ngIf="!enviando">Add Cliente</span>
+        <span *ngIf="enviando"><i class="fas fa-spinner fa-pulse"></i></span>
+      </button>
+      <button class="btn btn-danger fijo2" routerLink="/listado-clientes">Cancelar</button>
+  </form>
+</div>

@@ -1,0 +1,16 @@
+<div class="col-md-6 offset-md-3 col-12 autenticacion">
+    <h1>Inicie sesión</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="inicioSesion()">
+  
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" class="form-control" type="email" name="email" formControlName="email">
+      </mat-form-field> 
+  
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Contraseña" class="form-control" type="password" name="password" formControlName="password">
+      </mat-form-field>
+             
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Entrar</button>
+    </form>
+    <p class="marginGlobal">Si no dispone de cuenta pulse <a routerLink="/registro">aqui</a></p>
+  </div>

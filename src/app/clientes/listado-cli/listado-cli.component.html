@@ -1,0 +1,47 @@
+<div class="barra">
+  <span title="Clientes" routerLink="/listado-clientes">
+    <i class="fas fa-box"></i>
+  </span>
+  <span title="Presupuestos" routerLink="/listado-presupuestos">
+      <i class="fas fa-dollar-sign"></i>
+  </span>
+</div>
+<div class="col-md-12">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+      <li class="breadcrumb-item"><a routerLink="/ventas">Ventas</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Clientes</li>
+    </ol>
+  </nav>
+</div>
+<div class="col-md-12 titulo">
+  <span>Clientes</span>
+  <button class="btn btn-outline-success btn-lg fijo" routerLink="/crear-cliente">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>
+<div class="col-md-12">
+  <table datatable class="table table-bordered table-striped table-hover" > <!-- [swal] -->
+    <thead class="thead-dark">
+      <tr>
+        <th>Entidad</th>
+        <th>CIF</th>
+        <th>Teléfono</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.cif }}</td>
+        <td>{{ cliente.telefono }}</td>
+        <td class="flex">
+          <button class="icEnlace btn btn-primary" routerLink="/editar-cliente/{{cliente._id}}"><i class="fas fa-pencil-alt"></i></button>
+          <button class="icEnlace btn btn-danger" (click)="borrarCliente(cliente._id)"><i class="fas fa-trash-alt"></i></button>
+        </td>
+      </tr>
+    </tbody>
+    
+  </table>
+</div>

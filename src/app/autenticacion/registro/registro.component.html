@@ -1,0 +1,65 @@
+<div class="col-md-6 offset-md-3 col-12 autenticacion">
+  <h1>Introduzca sus datos</h1>
+  <form [formGroup]="registroForm" (ngSubmit)="crearUsuario()">
+    <!-- <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control">
+    </div> -->
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Nombre" class="form-control" type="text" name="nombre" autofocus formControlName="nombre">
+      <mat-error *ngIf="registroForm.controls.nombre.invalid && registroForm.controls.nombre.touched" class="novalido">
+        <i class="far fa-times-circle"></i>
+        Campo obligatorio
+      </mat-error>
+      <!-- <mat-error *ngIf="registroForm.controls.nombre.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error> -->
+      
+     </mat-form-field>
+      
+
+     <!-- <span *ngIf="registroForm.controls.nombre.valid" class="valido">
+        <i class="far fa-check-circle"></i>
+      </span> 
+      <span *ngIf="registroForm.controls.nombre.invalid && registroForm.controls.nombre.touched" class="novalido">
+        <i class="far fa-times-circle"></i>
+        Campo obligatorio
+      </span> -->
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email" class="form-control" type="email" name="email" formControlName="email">
+    </mat-form-field>
+<!-- 
+    <span *ngIf="registroForm.controls.email.valid" class="valido">
+      <i class="far fa-check-circle"></i>
+    </span> 
+    <span *ngIf="registroForm.controls.email.invalid && registroForm.controls.email.touched" class="novalido">
+      <i class="far fa-times-circle"></i>
+      Introduzca un correo electrónico válido
+    </span> -->
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Contraseña" class="form-control" type="password" name="<password>" formControlName="password">
+      <mat-error *ngIf="registroForm.value.repassword !== registroForm.value.password &&
+                        registroForm.controls.repassword.dirty">
+        Las Contraseñas no coinciden
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Repetir contraseña" class="form-control" type="password" name="repassword" formControlName="repassword">
+      <mat-error *ngIf="registroForm.value.repassword !== registroForm.value.password &&
+                        registroForm.controls.repassword.dirty">
+        Las Contraseñas no coinciden
+      </mat-error>
+    </mat-form-field>  
+           
+    <button type="submit" class="btn btn-primary" [disabled]="registroForm.invalid || 
+                                                              registroForm.value.repassword !==
+                                                              registroForm.value.password">Crear cuenta</button>
+  </form>
+
+  <p class="marginGlobal">Si ya dispone de cuenta <a routerLink="/inicio-sesion">Login</a></p>
+</div>

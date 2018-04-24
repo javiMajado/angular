@@ -1,0 +1,50 @@
+<div class="barra">
+    <span title="Proveedores" routerLink="/listado-proveedores">
+      <i class="fas fa-box"></i>
+    </span>
+    <span title="Presupuestos" routerLink="/listado-facturas">
+        <i class="fas fa-dollar-sign"></i>
+    </span>
+  </div>
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/compras">Compras</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Facturas</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="col-md-12 titulo">
+    <span>Facturas</span>
+    <button class="btn btn-outline-success btn-lg fijo" routerLink="/crear-factura">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <div class="col-md-12">
+    <table class="table table-bordered table-striped table-hover" > <!-- [swal] -->
+      <thead class="thead-dark">
+        <tr>
+          <th>Proveedor</th>
+          <th>CIF</th>
+          <th>Fecha</th>
+          <th>Concepto</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let factura of facturas">
+          <td>{{ factura.proveedor }}</td>
+          <td>{{ factura.cif }}</td>
+          <td>{{ factura.fecha }}</td>
+          <td>{{ factura.concepto }}</td>
+          <td>{{ factura.total }}</td>
+          <td class="flex">
+            <button class="icEnlace btn btn-primary" routerLink="/editar-factura/{{factura._id}}"><i class="fas fa-pencil-alt"></i></button>
+            <button class="icEnlace btn btn-danger" (click)="borrarFactura(factura._id)"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+      
+    </table>
+  </div>

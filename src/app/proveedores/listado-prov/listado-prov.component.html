@@ -1,0 +1,53 @@
+<div class="barra">
+    <span title="Proveedores" routerLink="/listado-proveedores">
+      <i class="fas fa-box"></i>
+    </span>
+    <span title="Presupuestos" routerLink="/listado-facturas">
+        <i class="fas fa-dollar-sign"></i>
+    </span>
+  </div>
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/compras">Compras</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Proveedores</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="col-md-12 titulo">
+    <span>Proveedores</span>
+    <button class="btn btn-outline-success btn-lg fijo" routerLink="/crear-proveedor" *ngIf="loginService.getPerProveedores()">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <div class="col-md-12">
+    <table class="table table-bordered table-striped table-hover" > <!-- [swal] -->
+      <thead class="thead-dark">
+        <tr>
+          <th>Entidad</th>
+          <th>CIF</th>
+          <th>Teléfono</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proveedor of proveedores">
+          <td>{{ proveedor.nombre }}</td>
+          <td>{{ proveedor.cif }}</td>
+          <td>{{ proveedor.telefono }}</td>
+          <td class="flex">
+            <button class="icEnlace btn btn-primary" routerLink="/editar-proveedor/{{proveedor._id}}">
+              <span *ngIf="loginService.getPerProveedores()"><i class="fas fa-pencil-alt"></i></span>
+              <span *ngIf="!loginService.getPerProveedores()"><i class="fas fa-eye"></i></span>
+              
+            </button>
+            <button class="icEnlace btn btn-danger" (click)="borrarProveedor(proveedor._id)" *ngIf="loginService.getPerProveedores()">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      
+    </table>
+  </div>

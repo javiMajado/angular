@@ -1,0 +1,50 @@
+<div class="barra">
+  <span title="Clientes" routerLink="/listado-clientes">
+    <i class="fas fa-box"></i>
+  </span>
+  <span title="Presupuestos" routerLink="/listado-presupuestos">
+      <i class="fas fa-dollar-sign"></i>
+  </span>
+</div>
+<div class="col-md-12">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+      <li class="breadcrumb-item"><a routerLink="/ventas">Ventas</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Presupuestos</li>
+    </ol>
+  </nav>
+</div>
+<div class="col-md-12 titulo">
+  <span>Presupuestos</span>
+  <button class="btn btn-outline-success btn-lg fijo" routerLink="/crear-presupuesto">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>
+<div class="col-md-12">
+  <table class="table table-bordered table-striped table-hover" > <!-- [swal] -->
+    <thead class="thead-dark">
+      <tr>
+        <th>Cliente</th>
+        <th>CIF</th>
+        <th>Fecha</th>
+        <th>Concepto</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let presupuesto of presupuestos">
+        <td>{{ presupuesto.cliente }}</td>
+        <td>{{ presupuesto.cif }}</td>
+        <td>{{ presupuesto.fecha }}</td>
+        <td>{{ presupuesto.concepto }}</td>
+        <td>{{ presupuesto.total }}</td>
+        <td class="flex">
+          <button class="icEnlace btn btn-primary" routerLink="/editar-presupuesto/{{presupuesto._id}}"><i class="fas fa-pencil-alt"></i></button>
+          <button class="icEnlace btn btn-danger" (click)="borrarPresupuesto(presupuesto._id)"><i class="fas fa-trash-alt"></i></button>
+        </td>
+      </tr>
+    </tbody>
+    
+  </table>
+</div>

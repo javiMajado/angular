@@ -1,0 +1,82 @@
+<div class="barra">
+    <span title="Proveedores" routerLink="/listado-proveedores">
+      <i class="fas fa-box"></i>
+    </span>
+    <span title="Presupuestos" routerLink="/listado-facturas">
+        <i class="fas fa-dollar-sign"></i>
+    </span>
+  </div>
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/compras">Compras</a></li>
+        <li class="breadcrumb-item"><a routerLink="/listado-proveedores">Proveedores</a></li>
+        <li class="breadcrumb-item active" aria-current="page" *ngIf="loginService.getPerProveedores()">Editar Proveedor</li>
+        <li class="breadcrumb-item active" aria-current="page" *ngIf="!loginService.getPerProveedores()">Visualizar Proveedor</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="col-md-12 titulo">
+    <span *ngIf="loginService.getPerProveedores()">Editar Proveedor</span>
+    <span *ngIf="!loginService.getPerProveedores()">Visualizar Proveedor</span>
+    <button class="btn btn-outline-success btn-lg" routerLink="/listado-proveedores">
+      Listado
+    </button>
+  </div>
+
+  <div class="col-md-8 offset-2 paddingGlobal">
+    <form [formGroup]="formProveedor" (ngSubmit)="editarProveedor()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre" [(ngModel)]="proveedor.nombre" [readonly]="!loginService.getPerProveedores()">
+        <label for="cif">CIF</label>
+          <input type="text" class="form-control" formControlName="cif" #cif [(ngModel)]="proveedor.cif" [readonly]="!loginService.getPerProveedores()">
+      </div>
+
+      <div class="form-group">       
+          <label for="domicilio">Domicilio</label>
+          <input type="text" class="form-control" formControlName="domicilio" [(ngModel)]="proveedor.domicilio" [readonly]="!loginService.getPerProveedores()">
+      </div>
+      
+      <div class="form-group">
+          <label for="cp">CP</label>
+          <input type="number" class="form-control" formControlName="cp" [(ngModel)]="proveedor.cp" [readonly]="!loginService.getPerProveedores()">
+          <label for="localidad">Localidad</label>
+          <input type="text" class="form-control" formControlName="localidad" [(ngModel)]="proveedor.localidad" [readonly]="!loginService.getPerProveedores()">
+      </div>
+      
+      <div class="form-group" *ngIf="loginService.getPerProveedores()">
+          <label for="provincia">Provincia</label>
+          <select class="form-control" formControlName="provincia" [(ngModel)]="proveedor.provincia" [disabled]="!loginService.getPerProveedores()">
+            <option *ngFor="let provincia of provincias" [ngValue]="provincia">
+              {{ provincia }}
+            </option>
+          </select>
+      </div>
+
+      <div class="form-group" *ngIf="!loginService.getPerProveedores()">
+          <label for="provincia">Provincia</label>
+          <input type="text" class="form-control" formControlName="provincia"  [(ngModel)]="proveedor.provincia" [readonly]="!loginService.getPerProveedores()">
+      </div>
+      
+      <div class="form-group">
+          <label for="telefono">Telefono</label>
+          <input type="text" class="form-control" formControlName="telefono"  [(ngModel)]="proveedor.telefono" [readonly]="!loginService.getPerProveedores()">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" formControlName="email"  [(ngModel)]="proveedor.email" [readonly]="!loginService.getPerProveedores()">
+      </div>
+        <div class="form-group">            
+            <label for="contacto">Contacto</label>
+            <input type="text" class="form-control" formControlName="contacto"  [(ngModel)]="proveedor.contacto" [readonly]="!loginService.getPerProveedores()">
+        </div>
+        <div *ngIf="loginService.getPerProveedores()">
+          <button type="submit" class="btn btn-success fijo2">
+              <span>Guardar</span>
+              <!-- <span *ngIf="enviando"><i class="fas fa-spinner fa-pulse"></i></span> -->
+            </button>
+            <button class="btn btn-danger fijo2" routerLink="/listado-proveedores">Cancelar</button>
+        </div>
+        
+    </form>
+  </div>

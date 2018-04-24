@@ -1,0 +1,165 @@
+<div class="barra">
+    <span title="Proveedores" routerLink="/listado-proveedores">
+      <i class="fas fa-box"></i>
+    </span>
+    <span title="Presupuestos"  routerLink="/listado-facturas">
+        <i class="fas fa-dollar-sign"></i>
+    </span>
+  </div>
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a routerLink="/compras">Compras</a></li>
+        <li class="breadcrumb-item"><a routerLink="/listado-facturas">Facturas</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Crear Factura</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="col-md-12 titulo">
+    <span>Crear Factura</span>
+    <button class="btn btn-outline-success btn-lg" routerLink="/listado-facturas">
+      Listado
+    </button>
+  </div>
+  <div class="col-md-8 paddingGlobal">
+      <form [formGroup]="formFra" (ngSubmit)="crearFactura()">
+          <!-- <div class="form-group">
+            <label for="proveedor">Proveedor</label>
+
+            <select class="form-control" formControlName="proveedor" [(ngModel)]="factura.proveedor" #proveedor>
+              <option *ngFor="let proveedor of proveedores" [ngValue]="proveedor">
+                {{ proveedor.nombre }}
+              </option>
+            </select>
+          </div> -->
+
+          <mat-form-field class="example-full-width">
+            <mat-select placeholder="Proveedor" formControlName="proveedor" [(ngModel)]="factura.proveedor" #proveedor>
+              <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor">
+                {{ proveedor.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Cif" class="form-control" type="text" name="cif" 
+            formControlName="cif" maxlength="9" readonly [(ngModel)]="formFra.value.cif">
+          </mat-form-field>
+
+          <!-- <div class="form-group reverse">
+            <input class="form-control" type="text" name="cif"
+            formControlName="cif" maxlength="9" readonly [(ngModel)]="formFra.value.cif">
+
+            <div class="extremos">
+                <label for="cif">Cif</label>
+                <span *ngIf="formFra.controls.cif.invalid &&
+                            formFra.controls.cif.touched &&
+                            !formFra.value.cif">
+                    *Campo Obligatorio.
+                </span>
+                <span *ngIf="formFra.controls.cif.invalid && formFra.value.cif">
+                    *El CIF debe tener 9 caracteres.
+                </span>  
+            </div> -->
+          <!-- </div> -->
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Fecha" class="form-control" type="date" name="fecha" 
+            formControlName="fecha">
+          </mat-form-field>
+<!-- 
+          <div class="form-group">
+            <label for="fecha">Fecha de factura</label>
+            <input class="form-control amarillo" type="date" name="fecha"
+                   formControlName="fecha">
+          </div> -->
+
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Concepto" class="form-control" type="text" name="concepto" 
+            formControlName="concepto">
+          </mat-form-field>
+
+          <!-- <div class="form-group">
+            <label for="concepto">Concepto</label>
+            <input class="form-control" type="text" name="concepto"
+                   formControlName="concepto">
+          </div> -->
+
+          <!-- <mat-form-field class="example-full-width">
+            <input matInput placeholder="Favorite food" value="Sushi">
+          </mat-form-field> -->
+          <!-- <mat-radio-group>
+            <mat-radio-button formControlName="irpf" value="si">IRPF</mat-radio-button>
+            <mat-radio-button formControlName="irpf" value="no">Sin IRPF</mat-radio-button>
+          </mat-radio-group> -->
+
+          
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="si" formControlName="irpf">
+              <label class="form-check-label" for="inlineRadio1">IRPF</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="no" formControlName="irpf">
+              <label class="form-check-label" for="inlineRadio2">Sin IRPF</label>
+            </div>
+          </div>      
+
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Base Imponible" class="form-control" type="text" name="base" 
+            formControlName="base">
+          </mat-form-field>
+
+          <!-- <div class="form-group">
+            <label for="base">Base Imponible</label>
+            <input class="form-control" type="number" name="base"
+                   formControlName="base">
+          </div> -->
+
+          <!-- <mat-form-field class="example-full-width">
+            <mat-select formControlName="tipo" name="tipo">
+              <mat-option value=0>0%</mat-option>
+              <mat-option value=0.04>4%</mat-option>
+              <mat-option value=0.10>10%</mat-option>
+              <mat-option value=0.21>21%</mat-option>
+                
+            </mat-select>
+          </mat-form-field> -->
+
+          <div class="form-group">
+            <label for="tipo">% de IVA</label>
+            <select class="form-control" name="tipo" 
+                    formControlName="tipo">
+              <option value=0>0%</option>
+              <option value=0.04>4%</option>
+              <option value=0.10>10%</option>
+              <option value=0.21>21%</option>
+            </select>
+          </div>
+
+
+          <div class="form-group" *ngIf="irpf === 'si'">
+            <label for="retencion">Retencion IRPF</label>
+            <input class="form-control" type="text" name="retencion"
+                   formControlName="retencion" readonly [(ngModel)]="formFra.value.retencion">
+          </div>
+
+          <div class="form-group">
+            <label for="importe">Importe IVA</label>
+            <input class="form-control" type="text" name="importe"
+                   formControlName="importe" readonly [(ngModel)]="formFra.value.importe">
+          </div>
+
+          <div class="form-group">
+            <label for="total">Total Factura IVA Incluido</label>
+            <input class="form-control" type="text" name="total"
+                  formControlName="total" readonly [(ngModel)]="formFra.value.total">
+          </div>
+
+          <button type="submit" class="btn btn-success">Añadir Factura</button>
+          <button class="btn btn-danger fijo2" routerLink="/listado-facturas">Cancelar</button>
+    </form>
+  </div>
