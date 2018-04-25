@@ -12,12 +12,15 @@ import swal from 'sweetalert2';
 })
 export class ListadoProvComponent implements OnInit {
 
-  proveedores:any;
+  proveedores:any[];
   mensaje: string;
 
-  currentPage: 0;
-  pageSize: 5;
+  totales: number;
+  currentPage: number = 0;
+  pageSize: number = 0;
 
+  botones: any[] = [];
+  tramoBotones: any = 0;
   
   constructor(private proveedoresService: ProveedoresService,
               private loginService: LoginService) { }
@@ -27,9 +30,44 @@ export class ListadoProvComponent implements OnInit {
   }
 
   cargarProveedores(){
-    this.proveedoresService.getProveedores().subscribe((res:any)=>{
+    this.proveedoresService.getProveedores(this.pageSize).subscribe((res:any)=>{
       this.proveedores = res.proveedores;
+      this.totales = res.totales;
+      this.botones = [];
+      this.generarBotones();
     });
+  }
+
+  setTramo(valor){
+    if(this.pageSize == (this.tramoBotones+5)*5){
+      this.tramoBotones +=5;
+      this.generarBotones();
+    }
+  }
+
+  setPageSize(valor){
+      this.pageSize += valor;
+      this.cargarProveedores();
+  }
+
+  setPagina(valor){
+    this.pageSize = valor;
+    this.cargarProveedores();
+    this.generarBotones();
+  }
+
+  setTramoBotones(tramoBotones){
+    this.tramoBotones = tramoBotones;
+    this.generarBotones();
+  }
+
+  generarBotones(){
+    this.botones = [];
+    var i;
+    for(i=this.tramoBotones; i<this.tramoBotones+5; i++){
+      this.botones.push(i+1);
+    }
+    console.log(this.botones);
   }
 
   borrarProveedor(id){
@@ -65,7 +103,6 @@ export class ListadoProvComponent implements OnInit {
         });
       }
     })
-
     
   }
 }

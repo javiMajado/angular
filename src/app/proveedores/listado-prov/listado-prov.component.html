@@ -48,6 +48,12 @@
           </td>
         </tr>
       </tbody>
-      
     </table>
+    <div class="paginacion">
+      <button class="btn btn-outline-primary" (click)="setPageSize(-5)" [disabled]="pageSize<=0"  aria-pressed="false"><i class="fas fa-angle-double-left"></i></button>
+      <button class="btn btn-outline-primary" (click)="setTramoBotones(-5)" [disabled]="pageSize<=25"  aria-pressed="false"><i class="fas fa-angle-left"></i></button>
+      <button class="mi-btn" *ngFor="let boton of botones" (click)="setPagina(boton*5-5)" [ngClass]="{'activo': boton == (pageSize+5)/5}">{{ boton }}</button>
+      <button class="btn btn-outline-primary" (click)="setTramoBotones(5)" [disabled]="pageSize>=totales-5"  aria-pressed="false"><i class="fas fa-angle-right"></i></button>
+      <button class="btn btn-outline-primary" (click)="setPageSize(5)" [disabled]="pageSize>=totales-5"  aria-pressed="false"><i class="fas fa-angle-double-right"></i></button>
+    </div>
   </div>

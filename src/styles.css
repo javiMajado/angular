@@ -237,3 +237,39 @@ form.fila {
 .fila.editable {
     margin-bottom: 0;
 }
+
+.paginacion {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 500px;
+}
+
+.paginacion button {
+    margin: 10px;
+}
+
+button {
+    box-shadow: 0 0 0 white !important;
+}
+
+.mi-btn {
+    width: 40px;
+    background-color:white;
+    color: #007bff;
+    border: solid 2px #007bff;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.mi-btn:hover {
+    background-color:#007bff;
+    color: white;
+}
+
+.mi-btn.activo {
+    background-color:#007bff !important;
+    color: white !important;
+}

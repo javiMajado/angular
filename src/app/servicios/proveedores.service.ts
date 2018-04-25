@@ -15,9 +15,10 @@ export class ProveedoresService {
     this.token = loginService.getToken();
   }
 
-  getProveedores(){
+  getProveedores(pageSize){
     var ruta = this.url+ '?token=' + this.token;
-    return this.http.get(ruta).map((res:any)=>{
+    var tramo = '?tramo=' + pageSize;
+    return this.http.get(this.url+tramo).map((res:any)=>{
       return res;
     });
   }

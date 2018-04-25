@@ -137,7 +137,7 @@ export class CrearFacComponent implements OnInit {
   }
 
   cargarProveedores(){
-    this.proveedoresService.getProveedores().subscribe((res:any)=>{
+    this.proveedoresService.getProveedores(100).subscribe((res:any)=>{
       this.proveedores = res.proveedores;
     });
   }
