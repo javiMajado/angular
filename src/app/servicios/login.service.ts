@@ -4,7 +4,6 @@ import 'rxjs/add/operator/map';
 import { AnonymousSubject } from 'rxjs/Subject';
 import { Router } from '@angular/router';
 import { SesionesService } from './sesiones.service';
-import { errorHandler } from '@angular/platform-browser/src/browser';
 
 @Injectable()
 export class LoginService {
@@ -44,7 +43,7 @@ export class LoginService {
   registroSesion(sesion){
     this.sesionesService.postSesion(sesion).subscribe((res:any)=>{
       this.guardarIdSesion(res.sesion._id);
-    },(error:any)=>{
+    }, (error)=>{
       console.log(error);
     });
     
@@ -53,9 +52,9 @@ export class LoginService {
   logoutSesion(logout){
     this.cargarTokenSesion();
     this.sesionesService.putSesion(this.sesionId, logout).subscribe((res:any)=>{
-      console.log("LogOut-Sesion correcta");
+      console.log('Respuesta correcta');
     }, (error)=> {
-      console.log(errorHandler);
+      console.log(error);
     });
 
   }
