@@ -61,6 +61,7 @@ export class ListadoProvComponent implements OnInit {
     for(i=this.tramoBotones; i<this.tramoBotones+5; i++){
         this.botones.push(i+1);
     }
+    console.log('Cambios en Git');
     this.tramo = this.tramoBotones * 5;
     this.cargarProveedores();
   }
