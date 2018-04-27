@@ -23,9 +23,9 @@
       <span><i class="fas fa-dollar-sign"></i></span>
       <p>Finanzas</p>
     </div>
-    <div class="box rojo">
-      <span><i class="fas fa-question"></i></span>
-      <p>Soporte</p>
+    <div class="box rojo" routerLink="/listado-sesiones" *ngIf="loginService.getPerAdmin()">
+      <span><i class="fas fa-clock"></i></span>
+      <p>Sesiones</p>
     </div>
     <div class="box rojo" routerLink="/listado-usuarios" *ngIf="loginService.getPerAdmin()">
       <span><i class="fas fa-users"></i></span>

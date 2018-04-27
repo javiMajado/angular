@@ -17,9 +17,9 @@ export class ListadoProvComponent implements OnInit {
 
   totales: number;
   currentPage: number = 0;
-  pageSize: number = 0;
+  tramo: number = 0;
 
-  botones: any[] = [];
+  botones: any[] = ['1','2','3','4','5'];
   tramoBotones: any = 0;
   
   constructor(private proveedoresService: ProveedoresService,
@@ -30,44 +30,66 @@ export class ListadoProvComponent implements OnInit {
   }
 
   cargarProveedores(){
-    this.proveedoresService.getProveedores(this.pageSize).subscribe((res:any)=>{
+    this.proveedoresService.getProveedores(this.tramo).subscribe((res:any)=>{
       this.proveedores = res.proveedores;
       this.totales = res.totales;
-      this.botones = [];
-      this.generarBotones();
     });
   }
 
-  setTramo(valor){
-    if(this.pageSize == (this.tramoBotones+5)*5){
+  avanzarTramo(valor){
+    this.tramo += valor;
+    if(this.tramo == (this.tramoBotones+5)*5){
       this.tramoBotones +=5;
+      this.generarBotones()
+    }
+    this.cargarProveedores();
+  }
+
+  retrocederTramo(valor){
+    this.tramo += valor;
+    if(this.tramo == (this.tramoBotones)*5-5){
+      this.tramoBotones -=5;
       this.generarBotones();
     }
-  }
-
-  setPageSize(valor){
-      this.pageSize += valor;
-      this.cargarProveedores();
-  }
-
-  setPagina(valor){
-    this.pageSize = valor;
     this.cargarProveedores();
-    this.generarBotones();
   }
 
-  setTramoBotones(tramoBotones){
-    this.tramoBotones = tramoBotones;
-    this.generarBotones();
+  avanzarTramoBotones(valor){
+    this.tramoBotones += valor;
+    this.botones = [];
+    var i;
+    for(i=this.tramoBotones; i<this.tramoBotones+5; i++){
+        this.botones.push(i+1);
+    }
+
+    this.tramo = this.tramoBotones * 5;
+    this.cargarProveedores();
   }
 
-  generarBotones(){
+  retrocederTramoBotones(valor){
+    this.tramoBotones += valor;
     this.botones = [];
     var i;
     for(i=this.tramoBotones; i<this.tramoBotones+5; i++){
       this.botones.push(i+1);
     }
-    console.log(this.botones);
+
+    this.tramo = this.tramoBotones * 5;
+    this.cargarProveedores();
+  }
+
+  setPagina(valor){
+    this.tramo = valor;
+    this.cargarProveedores();
+  }
+
+  generarBotones(){
+    this.botones = [];
+    var numeroBotones = Math.ceil(this.totales/5);
+    var i;
+    for(i=this.tramoBotones; i<this.tramoBotones+5; i++){
+      this.botones.push(i+1);
+    }
   }
 
   borrarProveedor(id){

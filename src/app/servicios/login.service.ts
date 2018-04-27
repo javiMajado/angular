@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { AnonymousSubject } from 'rxjs/Subject';
 import { Router } from '@angular/router';
+import { SesionesService } from './sesiones.service';
 
 @Injectable()
 export class LoginService {
@@ -13,8 +14,10 @@ export class LoginService {
   private nombre: string;
   private rol: string;
   private usuario:any; 
+  private sesionId: any;
 
   constructor(private http: HttpClient,
+              private sesionesService: SesionesService,
               private router: Router) {
     this.url = 'http://localhost:3000/login'
    }
@@ -25,6 +28,43 @@ export class LoginService {
       this.guardarCredenciales(res.token, res.nombre, res.rol);
       return res
     });
+  }
+
+  logout(){
+    this.token = '';
+    this.nombre = '';
+    this.rol = '';
+    localStorage.removeItem('token');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('rol');
+    this.router.navigate(['/']);
+  }
+
+  registroSesion(sesion){
+    this.sesionesService.postSesion(sesion).subscribe((res:any)=>{
+      this.guardarIdSesion(res.sesion._id);
+
+    });
+    
+  }
+
+  logoutSesion(logout){
+    this.cargarTokenSesion();
+    this.sesionesService.putSesion(this.sesionId, logout).subscribe((res:any)=>{
+      console.log('Respuesta correcta');
+    }, (error)=> {
+      console.log('respuesta incorrecta');
+    });
+
+  }
+
+  guardarIdSesion(sesionId){
+    localStorage.setItem('sesionId',sesionId);
+    this.sesionId = sesionId;
+  }
+
+  cargarTokenSesion(){
+    this.sesionId = localStorage.getItem('sesionId');
   }
 
   guardarCredenciales(token, nombre, rol){
@@ -62,18 +102,12 @@ export class LoginService {
     return (this.token.length > 0) ? true : false;
   }
 
-  logout(){
-    this.token = '';
-    this.nombre = '';
-    this.rol = '';
-    localStorage.removeItem('token');
-    localStorage.removeItem('nombre');
-    localStorage.removeItem('rol');
-    this.router.navigate(['/']);
-  }
-
   getToken(){
     return this.token;
+  }
+
+  getUsuario(){
+    return this.usuario;
   }
 
   getPerAdmin(){

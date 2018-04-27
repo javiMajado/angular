@@ -12,7 +12,7 @@ export class ProveedoresService {
   constructor(private http: HttpClient,
               private loginService: LoginService) { 
     this.url = 'http://localhost:3000/proveedor';
-    this.token = loginService.getToken();
+    this.token = localStorage.getItem('token');;
   }
 
   getProveedores(pageSize){
@@ -45,6 +45,7 @@ export class ProveedoresService {
   }
 
   deleteProveedor(id){
+    console.log("Token " +this.token);
     var ruta  = this.url+"/"+ id + '?token=' + this.token;
     return this.http.delete(ruta).map((res:any)=>{
       return res;

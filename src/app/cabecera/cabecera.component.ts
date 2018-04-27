@@ -21,6 +21,9 @@ export class CabeceraComponent implements OnInit {
   }
 
   desconectar(){
+    var fechaActual = new Date();
+    var fechaParse = fechaActual.getDate() + "/" + (fechaActual.getMonth() +1) + "/" + fechaActual.getFullYear() +"/"+ fechaActual.getHours() + ":" + fechaActual.getMinutes() + ":" + fechaActual.getSeconds();
+    this.loginService.logoutSesion(fechaParse);
     this.loginService.logout();
   }
 

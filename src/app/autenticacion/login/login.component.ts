@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   usuario: any;
+  sesion: any;
 
   mensaje: String;
 
@@ -29,14 +30,29 @@ export class LoginComponent implements OnInit {
 
   inicioSesion(){
     this.usuario = this.guardarUsuario();
+    this.sesion = this.guardarSesion();
     this.loginService.login(this.usuario).subscribe((res)=>{
+      this.loginService.registroSesion(this.sesion);
       this.router.navigate(['/']);
     },(error)=>{     
       if(error.error.mensaje){
         this.alerta('Error', error.error.mensaje, 'error', 4000);
       }    
     });
+    
+  }
 
+  guardarSesion(){
+    var fechaActual = new Date();
+    var fechaParse = fechaActual.getDate() + "/" + (fechaActual.getMonth() +1) + "/" + fechaActual.getFullYear() +"/"+ fechaActual.getHours() + ":" + fechaActual.getMinutes() + ":" + fechaActual.getSeconds();
+    const sesion = {
+      email: this.usuario.email,
+      login: fechaParse,
+      logout: ''
+    }
+
+    return sesion;
+    
   }
 
   guardarUsuario(){

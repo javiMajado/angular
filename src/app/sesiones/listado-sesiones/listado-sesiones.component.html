@@ -1,0 +1,33 @@
+<div class="barra">
+
+</div>
+<div class="col-md-12">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Sesiones</li>
+    </ol>
+  </nav>
+</div>
+<div class="col-md-12 titulo">
+  <span>Listado Sesiones</span>
+</div>
+<div class="col-md-12">
+  <table class="table table-bordered table-striped table-hover" > <!-- [swal] -->
+    <thead class="thead-dark">
+      <tr>
+        <th>Email</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sesion of sesiones">
+        <td>{{ sesion.email }}</td>
+        <td>{{ sesion.login }}</td>
+        <td>{{ sesion.logout }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

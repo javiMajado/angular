@@ -31,12 +31,15 @@ import { ListadoPreComponent } from './presupuestos/listado-pre/listado-pre.comp
 import { CrearPreComponent } from './presupuestos/crear-pre/crear-pre.component';
 import { EditarPreComponent } from './presupuestos/editar-pre/editar-pre.component';
 
+import { ListadoSesionesComponent } from './sesiones/listado-sesiones/listado-sesiones.component';
+
 import { ProveedoresService } from './servicios/proveedores.service';
 import { FacturasService } from './servicios/facturas.service';
 import { UsuariosService } from './servicios/usuarios.service';
 import { LoginService } from './servicios/login.service';
 import { ClientesService } from './servicios/clientes.service';
 import { PresupuestosService } from './servicios/presupuestos.service';
+import { SesionesService } from './servicios/sesiones.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
@@ -45,6 +48,7 @@ import { RegistroComponent } from './autenticacion/registro/registro.component';
 import { LoginComponent } from './autenticacion/login/login.component';
 import { RutasGuard } from './rutas.guard';
 
+
 const routes:Routes = [
   {path: '', component: InicioComponent},
   {path: 'registro', component: RegistroComponent},
@@ -52,6 +56,7 @@ const routes:Routes = [
   {path: 'listado-usuarios', component: ListadoUsuariosComponent, canActivate: [RutasGuard]},
   {path: 'compras', component: ComprasComponent, canActivate: [RutasGuard]},
   {path: 'ventas', component: VentasComponent, canActivate: [RutasGuard]},
+  {path: 'listado-sesiones', component: ListadoSesionesComponent},
   {path: 'listado-proveedores', component: ListadoProvComponent},
   {path: 'crear-proveedor', component: CrearProvComponent},
   {path: 'editar-proveedor/:id', component: EditarProvComponent},
@@ -88,7 +93,8 @@ const routes:Routes = [
     ListadoPreComponent,
     CrearPreComponent,
     EditarPreComponent,
-    ListadoUsuariosComponent
+    ListadoUsuariosComponent,
+    ListadoSesionesComponent
   ],
   imports: [
     BrowserModule,
@@ -117,6 +123,7 @@ const routes:Routes = [
     LoginService,
     ClientesService,
     PresupuestosService,
+    SesionesService,
     RutasGuard,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
