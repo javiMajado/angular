@@ -57,6 +57,8 @@ const routes:Routes = [
   {path: 'compras', component: ComprasComponent, canActivate: [RutasGuard]},
   {path: 'ventas', component: VentasComponent, canActivate: [RutasGuard]},
   {path: 'listado-sesiones', component: ListadoSesionesComponent},
+  {path: 'listado-sesiones/all', component: ListadoSesionesComponent},
+  {path: 'listado-sesiones/:email', component: ListadoSesionesComponent},
   {path: 'listado-proveedores', component: ListadoProvComponent},
   {path: 'crear-proveedor', component: CrearProvComponent},
   {path: 'editar-proveedor/:id', component: EditarProvComponent},

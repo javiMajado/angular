@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { LoginService } from '../../servicios/login.service';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import swal from 'sweetalert2';
 
@@ -43,11 +44,13 @@ export class LoginComponent implements OnInit {
   }
 
   guardarSesion(){
-    var fechaActual = new Date();
-    var fechaParse = fechaActual.getDate() + "/" + (fechaActual.getMonth() +1) + "/" + fechaActual.getFullYear() +"/"+ fechaActual.getHours() + ":" + fechaActual.getMinutes() + ":" + fechaActual.getSeconds();
+    moment.locale('es');
+    let now = moment().format('L') + "/" + moment().format('LTS');
+    // var fechaActual = new Date();
+    // var fechaParse = fechaActual.getDate() + "/" + (fechaActual.getMonth() +1) + "/" + fechaActual.getFullYear() +"/"+ fechaActual.getHours() + ":" + fechaActual.getMinutes() + ":" + fechaActual.getSeconds();
     const sesion = {
       email: this.usuario.email,
-      login: fechaParse,
+      login: now,
       logout: ''
     }
 

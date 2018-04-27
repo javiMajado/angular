@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../servicios/login.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-cabecera',
@@ -21,9 +22,12 @@ export class CabeceraComponent implements OnInit {
   }
 
   desconectar(){
+    moment.locale('es');
+    let now = moment().format('L') + "/" + moment().format('LTS');
+    console.log('Moment '+ now);
     var fechaActual = new Date();
     var fechaParse = fechaActual.getDate() + "/" + (fechaActual.getMonth() +1) + "/" + fechaActual.getFullYear() +"/"+ fechaActual.getHours() + ":" + fechaActual.getMinutes() + ":" + fechaActual.getSeconds();
-    this.loginService.logoutSesion(fechaParse);
+    this.loginService.logoutSesion(now);
     this.loginService.logout();
   }
 

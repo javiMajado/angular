@@ -11,8 +11,14 @@ export class SesionesService {
     this.url = 'http://localhost:3000/sesion';
    }
 
-   getSesiones(){
-     return this.http.get(this.url).map((res:any)=>{
+   getSesiones(email){
+     return this.http.get(this.url+ '?email=' + email).map((res:any)=>{
+      return res;
+     });
+   }
+
+   getAllSesiones(){
+    return this.http.get(this.url).map((res:any)=>{
       return res;
      });
    }

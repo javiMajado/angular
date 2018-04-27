@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SesionesService } from '../../servicios/sesiones.service';
 import { LoginService } from '../../servicios/login.service';
+import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 import swal from 'sweetalert2';
 
@@ -15,18 +17,36 @@ export class ListadoSesionesComponent implements OnInit {
   
   sesiones: any;
   sesion: any;
+  usuario: any;
+  email: any;
 
   constructor(private sesionesService: SesionesService,
-              private loginService: LoginService) { }
+              private loginService: LoginService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.cargarSesiones();
   }
 
   cargarSesiones(){
-    this.sesionesService.getSesiones().subscribe((res:any)=>{
+    this.email = this.route.snapshot.params['email'];
+    this.sesionesService.getSesiones(this.email).subscribe((res:any)=>{
       this.sesiones = res.sesiones;
     });
+  }
+
+  diferenciaSesiones(fLogin, fLogout){
+    var diferencia;
+
+    var fechaMoment = moment(fLogout);
+    console.log("fechaMoment: "+ fechaMoment);
+    if(fLogout){
+      diferencia = fechaMoment.diff(fLogout, 'seconds');
+    }
+
+    console.log("DIF: "+ diferencia);
+
+    return diferencia;
   }
 
   

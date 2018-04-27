@@ -19,6 +19,7 @@
         <th>Email</th>
         <th>Entrada</th>
         <th>Salida</th>
+        <!-- <th>Tiempo</th> -->
       </tr>
     </thead>
     <tbody>
@@ -26,6 +27,8 @@
         <td>{{ sesion.email }}</td>
         <td>{{ sesion.login }}</td>
         <td>{{ sesion.logout }}</td>
+        <!-- <td>{{ sesion.logout | date:'dd/MM/yy hh:mm' }}</td> -->
+        <!-- <td>{{ diferenciaSesiones(sesion.logout, sesion.login) }}</td> -->
       </tr>
     </tbody>
   </table>
